@@ -35,7 +35,7 @@ const useChatbot = () => {
                 },
                 {
                   headers: {
-                    Authorization: `Bearer sk-3ce044c4d6ac415a99863a9c27aed3c9`,
+                    Authorization: `Bearer ${env.API_KEY}`,
                     "Content-Type": "application/json",
                   },
                 }
