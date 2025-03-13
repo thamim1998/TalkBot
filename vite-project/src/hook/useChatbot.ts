@@ -12,33 +12,30 @@ const useChatbot = () => {
           const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
           
           const sendMessage = async (message: string) => {
-            // Add user message immediately
             setMessages(prev => [...prev, { text: message, sender: "user" }]);
         
-            await delay(1000); // Simulated delay
+            await delay(1000); 
         
             try {
-              // Use functional update to get latest messages
               setMessages(prev => [...prev, { text: "...", sender: "bot" }]);
         
-              // Properly format API messages with history
               const apiMessages = messages.map(({ text, sender }) => ({
                 role: sender === "user" ? "user" : "assistant",
                 content: text
               }));
         
               const response = await axios.post(
-                "https://api.deepseek.com/v1/chat/completions", // Correct endpoint
+                "https://api.deepseek.com/v1/chat/completions", 
                 {
                   model: "deepseek-chat",
                   messages: [
                     ...apiMessages,
-                    { role: "user", content: message } // Include new message
+                    { role: "user", content: message }
                   ],
                 },
                 {
                   headers: {
-                    Authorization: `Bearer sk-3ce044c4d6ac415a99863a9c27aed3c9`, // Use env var
+                    Authorization: `Bearer sk-3ce044c4d6ac415a99863a9c27aed3c9`,
                     "Content-Type": "application/json",
                   },
                 }
