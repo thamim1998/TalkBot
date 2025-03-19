@@ -35,7 +35,8 @@ const useChatbot = () => {
                 },
                 {
                   headers: {
-                    Authorization: `Bearer ${env.API_KEY}`,
+                    // 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
+                    Authorization: `Bearer ${process.env.REACT_APP_KEY}`,
                     "Content-Type": "application/json",
                   },
                 }
